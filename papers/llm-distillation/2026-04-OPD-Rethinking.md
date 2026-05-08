@@ -27,13 +27,13 @@ created: 2026-05-08
 OPD 的标准目标是在 student 自采样的轨迹上最小化 student 与 teacher 分布的 KL 散度：
 
 $$
-\mathcal{L}_{\mathrm{OPD}}(\theta) = \mathbb{E}_{x \sim \mathcal{D}_x} \left[ D_{\mathrm{KL}}\!\left(\pi_\theta(\cdot|x) \,\|\, \pi_T(\cdot|x)\right) \right]
+\mathcal{L}_{\mathrm{OPD}}(\theta) = \mathbb{E}_{x \sim \mathcal{D}_x} \left[ D_{\mathrm{KL}}\left(\pi_\theta(\cdot|x) \| \pi_T(\cdot|x)\right) \right]
 $$
 
 token 级展开（student 自采样轨迹 $\hat{y}$）：
 
 $$
-\mathcal{L}_{\mathrm{OPD}}(\theta) = \mathbb{E}_{x \sim \mathcal{D}_x,\, \hat{y} \sim \pi_\theta(\cdot|x)} \left[ \sum_{t=1}^{T} D_{\mathrm{KL}}(p_t \| q_t) \right]
+\mathcal{L}_{\mathrm{OPD}}(\theta) = \mathbb{E}_{x \sim \mathcal{D}_x, \hat{y} \sim \pi_\theta(\cdot|x)} \left[ \sum_{t=1}^{T} D_{\mathrm{KL}}(p_t \| q_t) \right]
 $$
 
 其中 $p_t$ 为 student 在第 $t$ 步的分布，$q_t$ 为 teacher 对应分布。
@@ -45,13 +45,13 @@ $$
 - **Top-k OPD**：在 student/teacher 各自 top-k token 的并集 $S_t$ 上计算截断 KL
 
 $$
-\mathcal{L}_{\mathrm{OPD}}^{\mathrm{top\text{-}k}}(\theta) = \mathbb{E}\!\left[\sum_{t=1}^{T} D_{\mathrm{KL}}\!\left(\bar{p}_t^{(S_t)} \,\|\, \bar{q}_t^{(S_t)}\right)\right]
+\mathcal{L}_{\mathrm{OPD}}^{\mathrm{top\text{-}k}}(\theta) = \mathbb{E}\left[\sum_{t=1}^{T} D_{\mathrm{KL}}\left(\bar{p}_t^{(S_t)} \| \bar{q}_t^{(S_t)}\right)\right]
 $$
 
 Sampled-Token OPD 简化为：
 
 $$
-\mathcal{L}_{\mathrm{OPD}}^{\mathrm{sample}}(\theta) = \mathbb{E}\!\left[\sum_{t=1}^{T} \left(\log p_t(\hat{y}_t) - \log q_t(\hat{y}_t)\right)\right]
+\mathcal{L}_{\mathrm{OPD}}^{\mathrm{sample}}(\theta) = \mathbb{E}\left[\sum_{t=1}^{T} \left(\log p_t(\hat{y}_t) - \log q_t(\hat{y}_t)\right)\right]
 $$
 
 ![Figure 1](https://arxiv.org/html/2604.13016v2/x1.png)
@@ -70,7 +70,7 @@ $$
 **诊断方式**：训练开始时的 overlap ratio（$\mathcal{M}_{\text{overlap}}$）是预测 OPD 成功与否的早期指标。
 
 $$
-\mathcal{M}_{\text{overlap}} \triangleq \mathbb{E}_t\!\left[\frac{|S_t^{(p)} \cap S_t^{(q)}|}{k}\right]
+\mathcal{M}_{\text{overlap}} \triangleq \mathbb{E}_t\left[\frac{|S_t^{(p)} \cap S_t^{(q)}|}{k}\right]
 $$
 
 其中 $S_t^{(p)}$ 和 $S_t^{(q)}$ 分别为 student 和 teacher 在第 $t$ 步的 top-k token 集合。
