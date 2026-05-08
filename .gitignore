@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Local skill config overrides
+*.local.json
+
+# Editor
+.vscode/
+.idea/
