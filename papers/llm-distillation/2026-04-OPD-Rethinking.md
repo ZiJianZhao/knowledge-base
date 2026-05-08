@@ -2,7 +2,7 @@
 title: "Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe"
 method: OPD-Rethinking
 authors: [Yaxuan Li, Yuxin Zuo, Bingxiang He, Jinqian Zhang, Chaojun Xiao, Cheng Qian, Tianyu Yu, Huan-ang Gao, Wenkai Yang, Zhiyuan Liu, Ning Ding]
-year: 2026
+published: 2026-04
 venue: arXiv
 tags: [knowledge-distillation, on-policy-distillation, LLM, reasoning, GRPO, token-level-dynamics]
 created: 2026-05-08
