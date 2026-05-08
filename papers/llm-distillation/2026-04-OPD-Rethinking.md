@@ -54,8 +54,11 @@ $$
 \mathcal{L}_{\mathrm{OPD}}^{\mathrm{sample}}(\theta) = \mathbb{E}\left[\sum_{t=1}^{T} \left(\log p_t(\hat{y}_t) - \log q_t(\hat{y}_t)\right)\right]
 $$
 
-![Figure 1](https://arxiv.org/html/2604.13016v2/x1.png)
-*Figure 1：OPD 整体概览，展示 JustRL-1.5B 和 Skywork-OR1-Math-7B 作为 teacher 的蒸馏路径。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x1.png" width="600">
+  <br>
+  <em>Figure 1：OPD 整体概览，展示 JustRL-1.5B 和 Skywork-OR1-Math-7B 作为 teacher 的蒸馏路径。</em>
+</p>
 
 ---
 
@@ -75,11 +78,17 @@ $$
 
 其中 $S_t^{(p)}$ 和 $S_t^{(q)}$ 分别为 student 和 teacher 在第 $t$ 步的 top-k token 集合。
 
-![Figure 2](https://arxiv.org/html/2604.13016v2/x2.png)
-*Figure 2：GRPO teacher（thinking 模式）vs Non-thinking teacher 的 OPD 效果对比，GRPO teacher 具有更高的初始重叠率和更强的蒸馏效果。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x2.png" width="600">
+  <br>
+  <em>Figure 2：GRPO teacher（thinking 模式）vs Non-thinking teacher 的 OPD 效果对比，GRPO teacher 具有更高的初始重叠率和更强的蒸馏效果。</em>
+</p>
 
-![Figure 3](https://arxiv.org/html/2604.13016v2/x3.png)
-*Figure 3：两种 teacher（Qwen3-4B Non-thinking vs Qwen3-4B-Base-GRPO）在 AIME 2024、AIME 2025、AMC 2023 上的验证性能。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x3.png" width="600">
+  <br>
+  <em>Figure 3：两种 teacher（Qwen3-4B Non-thinking vs Qwen3-4B-Base-GRPO）在 AIME 2024、AIME 2025、AMC 2023 上的验证性能。</em>
+</p>
 
 #### 2. 新知识条件（New Knowledge Beyond Same Pipeline）
 
@@ -87,8 +96,11 @@ $$
 
 **关键实验**：Reverse Distillation——用 student 的前 RL 版本作为 teacher，结果表明蒸馏效果退化至 baseline，证明"更大的模型"不等于"有新知识"。
 
-![Figure 4](https://arxiv.org/html/2604.13016v2/x4.png)
-*Figure 4：有/无 RL post-training 的 teacher 在 DeepSeek 和 Qwen 两个家族上的 OPD 性能及 gap recovery rate 对比。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x4.png" width="600">
+  <br>
+  <em>Figure 4：有/无 RL post-training 的 teacher 在 DeepSeek 和 Qwen 两个家族上的 OPD 性能及 gap recovery rate 对比。</em>
+</p>
 
 **Gap Recovery Rate 定义**：
 
@@ -98,8 +110,11 @@ $$
 
 经过 RL post-training 的 teacher 显著提升 gap recovery rate。
 
-![Figure 5](https://arxiv.org/html/2604.13016v2/x5.png)
-*Figure 5：Reverse Distillation 实验——以 JustRL-1.5B 为 student，同家族 teacher 均导致性能退化。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x5.png" width="600">
+  <br>
+  <em>Figure 5：Reverse Distillation 实验——以 JustRL-1.5B 为 student，同家族 teacher 均导致性能退化。</em>
+</p>
 
 #### 3. Token 级动态机制
 
@@ -117,16 +132,22 @@ $$
 \Delta H_t = |H(q_t) - H(p_t)|
 $$
 
-![Figure 6](https://arxiv.org/html/2604.13016v2/x6.png)
-*Figure 6：成功 vs 失败 OPD 的 overlap ratio、advantage、entropy gap 训练动态对比。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x6.png" width="600">
+  <br>
+  <em>Figure 6：成功 vs 失败 OPD 的 overlap ratio、advantage、entropy gap 训练动态对比。</em>
+</p>
 
 **消融实验**：将 OPD 损失拆分为"重叠 token"和"非重叠 token"两部分，分别训练：
 
 - Overlap Top-k：性能与完整 Top-k OPD 持平
 - Non-Overlap Top-k：性能显著下降
 
-![Figure 7](https://arxiv.org/html/2604.13016v2/x7.png)
-*Figure 7：重叠 vs 非重叠 token 消融实验，证明重叠 token 是 OPD 效果的核心来源。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x7.png" width="600">
+  <br>
+  <em>Figure 7：重叠 vs 非重叠 token 消融实验，证明重叠 token 是 OPD 效果的核心来源。</em>
+</p>
 
 #### 4. 修复策略 A：Off-Policy Cold Start
 
@@ -134,8 +155,11 @@ $$
 
 效果：SFT 初始化的 student 在整个 OPD 训练过程中均优于 base 初始化。
 
-![Figure 8](https://arxiv.org/html/2604.13016v2/x8.png)
-*Figure 8：Off-Policy Cold Start 效果——SFT 初始化 student 优于 base 初始化。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x8.png" width="600">
+  <br>
+  <em>Figure 8：Off-Policy Cold Start 效果——SFT 初始化 student 优于 base 初始化。</em>
+</p>
 
 #### 5. 修复策略 B：Teacher-Aligned Prompts
 
@@ -145,11 +169,17 @@ $$
 - Prompt 内容对齐（content alignment）进一步提升性能，但过度对齐会导致 entropy collapse
 - 建议混合使用 aligned 和 out-of-distribution prompts
 
-![Figure 9](https://arxiv.org/html/2604.13016v2/x9.png)
-*Figure 9：Teacher-aligned template vs 通用 template 的 accuracy 和 overlap 增长对比。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x9.png" width="600">
+  <br>
+  <em>Figure 9：Teacher-aligned template vs 通用 template 的 accuracy 和 overlap 增长对比。</em>
+</p>
 
-![Figure 10](https://arxiv.org/html/2604.13016v2/x10.png)
-*Figure 10：Teacher-aligned prompts vs 通用 prompts 的性能和概率质量集中度对比。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x10.png" width="600">
+  <br>
+  <em>Figure 10：Teacher-aligned prompts vs 通用 prompts 的性能和概率质量集中度对比。</em>
+</p>
 
 ---
 
@@ -195,30 +225,51 @@ $$
 - 不稳定性起源于序列末尾（back-to-front instability）
 - Teacher 的 continuation advantage 随 prefix depth 增加而减弱
 
-![Figure 11](https://arxiv.org/html/2604.13016v2/x11.png)
-*Figure 11：不同 max response length 下的性能分析，3K-7K 为最优区间。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x11.png" width="600">
+  <br>
+  <em>Figure 11：不同 max response length 下的性能分析，3K-7K 为最优区间。</em>
+</p>
 
-![Figure 12](https://arxiv.org/html/2604.13016v2/x12.png)
-*Figure 12：不同 max response length 下的训练动态。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x12.png" width="600">
+  <br>
+  <em>Figure 12：不同 max response length 下的训练动态。</em>
+</p>
 
-![Figure 13](https://arxiv.org/html/2604.13016v2/x13.png)
-*Figure 13：15K max length 下各解码位置的 student entropy，展示 back-to-front 不稳定模式。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x13.png" width="600">
+  <br>
+  <em>Figure 13：15K max length 下各解码位置的 student entropy，展示 back-to-front 不稳定模式。</em>
+</p>
 
 ### Reward 信号分析
 
-![Figure 14](https://arxiv.org/html/2604.13016v2/x14.png)
-*Figure 14：正确 vs 错误 rollout 的序列平均 reward 分布，两者 AUROC 相当，说明序列级 reward 难以区分局部质量。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x14.png" width="600">
+  <br>
+  <em>Figure 14：正确 vs 错误 rollout 的序列平均 reward 分布，两者 AUROC 相当，说明序列级 reward 难以区分局部质量。</em>
+</p>
 
 ### Top-k 支持集大小消融
 
-![Figure 15](https://arxiv.org/html/2604.13016v2/x15.png)
-*Figure 15：k ∈ {1, 4, 16, 64} 的 Top-k OPD 性能对比，Top-1 明显最差，其余相当。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x15.png" width="600">
+  <br>
+  <em>Figure 15：k ∈ {1, 4, 16, 64} 的 Top-k OPD 性能对比，Top-1 明显最差，其余相当。</em>
+</p>
 
-![Figure 16](https://arxiv.org/html/2604.13016v2/x16.png)
-*Figure 16：不同 k 值下的训练动态。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x16.png" width="600">
+  <br>
+  <em>Figure 16：不同 k 值下的训练动态。</em>
+</p>
 
-![Figure 17](https://arxiv.org/html/2604.13016v2/x17.png)
-*Figure 17：附录补充图，训练动态或额外消融（见原文附录）。*
+<p align="center">
+  <img src="https://arxiv.org/html/2604.13016v2/x17.png" width="600">
+  <br>
+  <em>Figure 17：附录补充图，训练动态或额外消融（见原文附录）。</em>
+</p>
 
 ### 局限性
 
